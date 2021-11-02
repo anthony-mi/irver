@@ -7,10 +7,20 @@ const ConfigureGame = () => {
     const [countOfWords, setCountOfWords] = useState(defaultCountOfWords);
     const [timeBeforeTilesHidingInSeconds, setTimeBeforeTilesHiding] = useState(defaultTimeBeforeTilesHidingInSeconds);
     const [useOnlyUnlearnedWords, setUseOnlyUnlearnedWords] = useState(defaultUseOnlyUnlearnedWords);
+
+    const [validationErrors, setValidationErrors] = useState([]);
+
     const [_, setGameConfig] = useContext(GameContext);
 
     const updateCountOfWords = (e) => {
-        setCountOfWords(e.target.value);
+        const count = e.target.value;
+
+        if(count < 1 || count > verbs.length) {
+            
+        }
+        else {
+            setCountOfWords(e.target.value);
+        }
     }
 
     const updateTime = (e) => {
@@ -35,20 +45,25 @@ const ConfigureGame = () => {
     }
 
     return(
-        <form onSubmit={runGame}>
-            <label>
+        <form class='card col-md-7 mt-5 p-3' onSubmit={runGame}>
+            <label class="form-label">
                 Count of words:
-                <input type="number" name="countOfWords" value={countOfWords} onChange={updateCountOfWords} required min='5' max={verbs.length} />
+                <input type="number" class="form-control" name="countOfWords" value={countOfWords} onChange={updateCountOfWords} required min='5' max={verbs.length} />
             </label>
+            <br />
             <label>
                 Time before tiles hiding (in seconds):
-                <input type="number" name="timeBeforeTilesHidingInSeconds" value={timeBeforeTilesHidingInSeconds} onChange={updateTime} required />
+                <input type="number" class="form-control" name="timeBeforeTilesHidingInSeconds" value={timeBeforeTilesHidingInSeconds} onChange={updateTime} required />
             </label>
-            <label>
-                Use only unlearned words
-                <input type="checkbox" name="useOnlyUnlearnedWords" value={useOnlyUnlearnedWords} onChange={updateUseUnlearned} />
-            </label>
-            <button>Submit</button>
+            <br />
+            <div class="mt-2 d-flex">
+                <h6 class="mb-0">Use only unlearned words</h6>
+                <div class="form-check form-switch ps-0 ms-auto my-auto">
+                    <input class="form-check-input mt-1 ms-auto" type="checkbox" name="useOnlyUnlearnedWords" value={useOnlyUnlearnedWords} onChange={updateUseUnlearned} />
+                </div>
+            </div>
+            <br />
+            <button class='btn bg-gradient-dark px-3 mb-2 active'>Submit</button>
         </form>
     );
 }
