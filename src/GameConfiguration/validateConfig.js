@@ -1,4 +1,4 @@
-import verbs from './verbs';
+import verbs from '../verbs';
 
 export default function validateConfig(values) {
     let errors = {}

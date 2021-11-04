@@ -1,6 +1,6 @@
 import React from 'react';
 import GameProvider from './GameContext';
-import ConfigureGame from './ConfigureGame';
+import ConfigureGame from './GameConfiguration/ConfigureGame';
 
 function App() {
   return (

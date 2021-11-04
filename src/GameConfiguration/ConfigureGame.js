@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { GameContext, defaultCountOfWords, defaultTimeBeforeTilesHidingInSeconds, defaultUseOnlyUnlearnedWords} from './GameContext';
-import verbs from './verbs.js';
+import { GameContext, defaultCountOfWords, defaultTimeBeforeTilesHidingInSeconds, defaultUseOnlyUnlearnedWords} from '../GameContext';
+import verbs from '../verbs.js';
 import useForm from './useForm';
 import validate from './validateConfig';
 
