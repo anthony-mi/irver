@@ -7,19 +7,12 @@ export const defaultUseOnlyUnlearnedWords = false;
 export const GameContext = createContext();
 
 export const GameProvider = props => {
-    const [countOfWords, setCountOfWords] = useState(defaultCountOfWords);
-    const [timeBeforeTilesHidingInSeconds, setTimeBeforeTilesHiding] = useState(defaultTimeBeforeTilesHidingInSeconds);
-    const [useOnlyUnlearnedWords, setUseOnlyUnlearnedWords] = useState(defaultUseOnlyUnlearnedWords);
-    const [learnedWords, setLearnedWords] = useState([]);
-
-    var context = {
-        countOfWords: countOfWords,
-        timeBeforeTilesHidingInSeconds: timeBeforeTilesHidingInSeconds,
-        useOnlyUnlearnedWords: useOnlyUnlearnedWords,
-        learnedWords: learnedWords
-    }
-
-    const setContext = v => context = v;
+    const [context, setContext] = useState({
+        countOfWords: defaultCountOfWords,
+        timeBeforeTilesHidingInSeconds: defaultTimeBeforeTilesHidingInSeconds,
+        useOnlyUnlearnedWords: defaultUseOnlyUnlearnedWords,
+        learnedWords: []
+    });
 
     return (
         <GameContext.Provider value={[context, setContext]}>
