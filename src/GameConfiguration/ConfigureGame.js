@@ -1,8 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { GameContext, defaultCountOfWords, defaultTimeBeforeTilesHidingInSeconds, defaultUseOnlyUnlearnedWords} from '../GameContext';
+import { RouteName as ListVerbsRoute } from '../VerbsListing/ListVerbs';
 import verbs from '../verbs.js';
 import useForm from './useForm';
 import validate from './validateConfig';
+import { useNavigate } from "react-router-dom";
+
+export const RouteName = "/configuration";
 
 const ConfigureGame = () => {
     const {handleChange, values} = useForm();
@@ -12,7 +16,9 @@ const ConfigureGame = () => {
     // The value of true doesn't mean that the data of the form is valid.
     const [wasValidated, setWasValidated] = useState(false);
 
-    const runGame = (e) => {
+    const navigate = useNavigate();
+
+    const onSubmit = (e) => {
         e.preventDefault();
 
         setErrors(validate(values));
@@ -26,11 +32,14 @@ const ConfigureGame = () => {
             };
             return newContextState;
         });
+
+        if(Object.keys(errors).length === 0) {
+            navigate(ListVerbsRoute);
+        }
     }
 
     return(
-        <form className={`card col-md-7 mt-5 p-3 needs-validation`} onSubmit={runGame}>
-            {/* ${isFormValid ? 'was-validated' : ''} */}
+        <form className={`card col-md-7 mt-5 p-3 needs-validation`} onSubmit={onSubmit}>
             <label className="form-label">
                 Count of words:
                 <input type="number"
