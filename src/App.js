@@ -1,11 +1,19 @@
 import React from 'react';
 import GameProvider from './GameContext';
-import ConfigureGame from './GameConfiguration/ConfigureGame';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import ConfigureGame, { RouteName as ConfigureGameRoute } from './GameConfiguration/ConfigureGame';
+import ListVerbs, { RouteName as ListVerbsRoute } from './VerbsListing/ListVerbs';
 
 function App() {
   return (
     <GameProvider>
-      <ConfigureGame />
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<ConfigureGame />} />
+          <Route path={ConfigureGameRoute} element={<ConfigureGame />} />
+          <Route path={ListVerbsRoute} element={<ListVerbs />}/>
+        </Routes>
+      </Router>
     </GameProvider>
   );
 }
